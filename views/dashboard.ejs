@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard | CalmConnect</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="top-bar">
+    <h1 class="logo">🧠 CalmConnect</h1>
+    <div class="nav-buttons">
+      <a href="/create-post" class="btn">Create Post</a>
+      <a href="/logout" class="btn">Log Out</a>
+    </div>
+  </header>
+
+  <main>
+    <h2>Welcome, <%= username %>!</h2>
+    <form action="/submit-review" method="POST">
+      <textarea name="message" rows="4" placeholder="Share your thoughts..."></textarea>
+      <button type="submit" class="btn">Post Review</button>
+    </form>
+
+    <section class="reviews">
+      <% reviews.forEach(review => { %>
+        <div class="review">
+          <strong><%= review.username %></strong>
+          <p><%= review.message %></p>
+        </div>
+      <% }) %>
+    </section>
+  </main>
+
+  
+
+  <footer>
+    <p>&copy; 2025 CalmConnect | Empowering Minds Together</p>
+  </footer>
+</body>
+</html>
+
+

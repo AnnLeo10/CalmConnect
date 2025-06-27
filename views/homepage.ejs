@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CalmConnect | Register</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <div class="logo">
+        <img src="/calmconnect-logo.png" alt="CalmConnect Logo" height="30">
+        <span>CalmConnect</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="auth-container">
+      <h2>Register</h2>
+      <p>A safe space to express, connect, and heal.</p>
+
+      <% if (errors && errors.length > 0) { %>
+        <div class="errors">
+          <% errors.forEach(function(error) { %>
+            <p><%= error %></p>
+          <% }); %>
+        </div>
+      <% } %>
+
+      <form action="/register" method="POST" autocomplete="off">
+        <input 
+          type="text" 
+          name="username" 
+          placeholder="Choose a Username" 
+          value="<%= typeof username === 'string' ? username : '' %>" 
+          required
+        >
+        <input 
+          type="password" 
+          name="password" 
+          placeholder="Create a Password" 
+          required 
+          autocomplete="new-password"
+        >
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 CalmConnect | Space to Heal, Connect & Grow</p>
+  </footer>
+</body>
+</html>
+
+
+
+
+
+

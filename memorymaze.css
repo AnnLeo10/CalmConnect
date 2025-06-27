@@ -1,0 +1,295 @@
+:root {
+    /* Light Mode Variables */
+    --bg-color: #f0f0f0;
+    --text-color: #333;
+    --header-bg: #4CAF50;
+    --header-text: white;
+    --button-bg: #00be75;
+    --button-hover-bg: #00b327;
+    --button-text: white;
+    --modal-bg: rgba(0, 0, 0, 0.5);
+    --modal-content-bg: white;
+    --cell-bg: #eee;
+    --cell-border: #ccc;
+    --flash-color: #FFD700; /* Gold for pattern flash */
+    --correct-color: #28a745; /* Green for correct clicks */
+    --incorrect-color: #dc3545; /* Red for incorrect clicks */
+    --active-border: #007bff; /* Blue for hover/active cell border */
+}
+
+/* Dark Mode Overrides */
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --header-bg: #333;
+    --header-text: #eee;
+    --button-bg: #555;
+    --button-hover-bg: #777;
+    --button-text: #eee;
+    --modal-bg: rgba(255, 255, 255, 0.2);
+    --modal-content-bg: #333;
+    --cell-bg: #222;
+    --cell-border: #444;
+    --flash-color: #FFD700;
+    --correct-color: #218838;
+    --incorrect-color: #c82333;
+    --active-border: #0056b3;
+}
+
+/* General Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align content to the top */
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth dark/light mode transition */
+}
+
+/* Main Container for the Game */
+.container {
+    background-color: var(--modal-content-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Header Styling */
+header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    padding: 15px 0;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+/* Control Buttons Styling */
+.controls button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.controls button:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-1px); /* Slight lift on hover */
+}
+
+.controls button:active {
+    transform: translateY(0); /* Reset on click */
+}
+
+/* Game Area Styling */
+#gameArea {
+    margin-top: 20px;
+}
+
+.game-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Grid Container Styling */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Creates a 4-column grid */
+    gap: 10px; /* Space between grid cells */
+    width: 320px; /* Fixed width for the grid */
+    height: 320px; /* Fixed height for the grid */
+    margin: 0 auto 30px auto; /* Center the grid horizontally */
+    background-color: var(--cell-bg);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual Grid Cell Styling */
+.grid-cell {
+    width: 70px; /* Fixed width for each cell */
+    height: 70px; /* Fixed height for each cell */
+    background-color: var(--cell-bg);
+    border: 2px solid var(--cell-border);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none; /* Prevent text selection */
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+.grid-cell:hover:not(.flashing):not(.correct):not(.incorrect) {
+    transform: scale(1.05); /* Enlarge slightly on hover */
+    border-color: var(--active-border);
+}
+
+/* Styles for cells during different game states */
+.grid-cell.flashing {
+    background-color: var(--flash-color);
+    border-color: var(--flash-color);
+    animation: flash 0.5s ease-in-out forwards; /* Apply flash animation */
+}
+
+.grid-cell.correct {
+    background-color: var(--correct-color);
+    border-color: var(--correct-color);
+}
+
+.grid-cell.incorrect {
+    background-color: var(--incorrect-color);
+    border-color: var(--incorrect-color);
+}
+
+/* Keyframe Animation for Flashing Cells */
+@keyframes flash {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0; } /* Fades out at the end of the animation */
+}
+
+
+/* Modal (Instructions) Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stays in place when scrolling */
+    z-index: 1000; /* On top of other content */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if content is too large */
+    background-color: var(--modal-bg); /* Dark overlay */
+    backdrop-filter: blur(5px); /* Optional: blurs content behind modal */
+    -webkit-backdrop-filter: blur(5px); /* For Safari */
+    display: flex; /* Use flexbox to center content */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--modal-content-bg);
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    color: var(--text-color);
+    text-align: left;
+}
+
+.close-button {
+    color: var(--text-color);
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #999;
+}
+
+/* Game Over Screen Styling */
+#gameOverScreen {
+    margin-top: 30px;
+    padding: 30px;
+    background-color: var(--cell-bg);
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#gameOverScreen h2 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+#gameOverScreen button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#gameOverScreen button:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-1px);
+}
+
+/* Specific styling for the 'Next Game' button */
+#nextGameButton {
+    background-color: #6c757d; /* Grey color */
+}
+#nextGameButton:hover {
+    background-color: #5a6268;
+}
+
+/* Footer Styling */
+footer {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid var(--cell-border);
+    color: var(--text-color);
+    font-size: 0.9em;
+}
+
+/* Pause Overlay Styling */
+.paused-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black overlay */
+    color: white;
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Ensures it's above game content but below modals */
+    text-shadow: 0 0 10px black;
+    pointer-events: none;
+}

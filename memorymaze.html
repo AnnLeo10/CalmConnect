@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pattern Recall Game</title>
+    <link rel="stylesheet" href="memorymaze.css">
+</head>
+<body>
+    <audio id="backgroundMusic" loop>
+    <source src="/bgmusic/sb_signaltonoise (1).mp3" type="audio/mpeg">
+    </audio>
+    <div class="container">
+        <header>
+            <h1>Pattern Recall Game</h1>
+            <div class="controls">
+                <button id="darkModeToggle">Dark Mode</button>
+                <button id="pauseButton">Pause</button>
+                <button id="instructionsButton">Instructions</button>
+                <button id="startGameButton">Start Game</button>
+            </div>
+        </header>
+
+        <div id="instructionsModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Instructions</h2>
+                <p>Welcome to the Pattern Recall Game!</p>
+                <p>A sequence of cells on the grid will flash briefly. Your task is to remember this sequence.</p>
+                <p>After the pattern disappears, click the cells in the <em>exact order</em> they were shown.</p>
+                <p>The game has <strong>5 levels</strong>. Each level will have a longer and more complex pattern.</p>
+                <p>Good luck!</p>
+            </div>
+        </div>
+
+        <div id="gameArea">
+            <div class="game-info">
+                <p>Level: <span id="levelDisplay">1</span> </p>
+                <p>Status: <span id="statusDisplay">Press Start</span></p>
+            </div>
+            <div id="gridContainer" class="grid">
+                </div>
+        </div>
+
+        <div id="gameOverScreen" class="game-over-screen" style="display: none;">
+            <h2>Game Over!</h2>
+            <p>You have completed all levels.</p>
+            <button id="nextGameButton">Next Game</button>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Pattern Recall Game</p>
+        </footer>
+    </div>
+
+    <div class="paused-overlay" style="display: none;">PAUSED</div>
+
+    <script src="memorymaze.js"></script>
+</body>
+</html>

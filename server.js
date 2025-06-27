@@ -1,22 +1,33 @@
 require("dotenv").config();
 const express = require("express");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const betterSqlite3 = require("better-sqlite3");
-const path = require("path");
+const cookieParser = require("cookie-parser");
 
 const app = express();
-
-// Set up EJS for templating
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-
-// Middleware for parsing and static files
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
+app.use(cookieParser());
 
-// Database setup
-const db = betterSqlite3("calmconnect.db");
+// ✅ Middleware: Decode JWT from cookie
+app.use((req, res, next) => {
+  try {
+    const decoded = jwt.verify(req.cookies["our simple app"], process.env.JWTSECRET);
+    req.user = decoded;
+  } catch (err) {
+    req.user = false;
+  }
+  res.locals.user = req.user;
+  next();
+});
+
+// ✅ Setup DB
+const db = betterSqlite3("ourApp.db");
 db.pragma("journal_mode = WAL");
+
+// Create users table if it doesn't exist
 db.prepare(`
   CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -25,47 +36,76 @@ db.prepare(`
   )
 `).run();
 
-// Render registration page
+// ✅ GET: Homepage (Register/Login page)
 app.get("/", (req, res) => {
-  res.render("register", { errors: [], username: "" });
+  if (req.user) return res.redirect("/dashboard");
+  res.render("homepage", {
+    errors: [],
+    username: null
+  });
 });
 
-// Handle registration
+// ✅ GET: Dashboard
+app.get("/dashboard", (req, res) => {
+  if (!req.user) return res.redirect("/");
+  res.render("dashboard", {
+    username: req.user.username
+  });
+});
+
+// ✅ POST: Register
 app.post("/register", async (req, res) => {
   const errors = [];
-  const username = req.body.username?.trim() || "";
-  const password = req.body.password?.trim() || "";
+  const username = req.body.username?.trim();
+  const password = req.body.password?.trim();
 
-  // Validation
   if (!username) errors.push("You must provide a username.");
-  if (username.length < 3 || username.length > 10 || !/^[a-zA-Z0-9]+$/.test(username)) {
+  if (username.length < 3 || username.length > 10 || !/^[a-zA-Z0-9]+$/.test(username))
     errors.push("Username must be 3–10 characters and alphanumeric.");
-  }
-  if (!password || password.length < 12 || password.length > 70) {
+
+  if (!password || password.length < 12 || password.length > 70)
     errors.push("Password must be between 12–70 characters.");
-  }
 
   if (errors.length > 0) {
-    return res.render("register", { errors, username });
+    return res.render("homepage", { errors, username: null });
   }
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    db.prepare("INSERT INTO users (username, password) VALUES (?, ?)").run(username, hashedPassword);
-    // Registration successful, show success message
-    res.render("register", { errors: ["Registration successful! You can now log in."], username: "" });
+    const insert = db.prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+    const result = insert.run(username, hashedPassword);
+
+    const user = db.prepare("SELECT * FROM users WHERE rowid = ?").get(result.lastInsertRowid);
+
+    const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWTSECRET, {
+      expiresIn: "1d"
+    });
+
+    res.cookie("our simple app", token, {
+      httpOnly: true,
+      secure: false, // Set to true in production
+      sameSite: "strict",
+      maxAge: 24 * 60 * 60 * 1000
+    });
+
+    res.redirect("/dashboard");
   } catch (e) {
     if (e.code === "SQLITE_CONSTRAINT_UNIQUE") {
-      res.render("register", { errors: ["Username already taken."], username: "" });
+      res.render("homepage", { errors: ["Username already taken."], username: null });
     } else {
-      console.error(e);
-      res.render("register", { errors: ["Something went wrong. Please try again."], username: "" });
+      console.error("❌ Registration Error:", e);
+      res.render("homepage", { errors: ["Something went wrong."], username: null });
     }
   }
 });
 
-// Start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`CalmConnect backend running at http://localhost:${PORT}`);
+// ✅ GET: Logout
+app.get("/logout", (req, res) => {
+  res.clearCookie("our simple app");
+  res.redirect("/");
+});
+
+// ✅ Server Start
+app.listen(3000, () => {
+  console.log("✅ Server running at http://localhost:3000");
 });

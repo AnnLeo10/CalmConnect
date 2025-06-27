@@ -1,0 +1,275 @@
+/* --- Global Styles --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lora:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #5a7d7c; /* Muted teal/green */
+    --secondary-color: #8caba8; /* Lighter shade */
+    --accent-color: #a4c9c7; /* Lighter accent */
+    --text-dark: #333;
+    --text-light: #f4f4f4;
+    --bg-light: #f8fcfd;
+    --success-color: #4CAF50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow: hidden; /* Hide overflow for SVG animations */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+/* --- Main Container --- */
+.register-main {
+    width: 100%;
+    max-width: 1100px;
+    padding: 20px;
+}
+
+.register-card {
+    display: flex;
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Important for border-radius */
+    animation: fadeIn 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* --- SVG Illustration Section --- */
+.register-illustration {
+    flex: 1;
+    min-width: 400px;
+    position: relative;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--accent-color);
+}
+
+.register-illustration svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Form Section --- */
+.register-form-container {
+    flex: 1;
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo a {
+    font-family: 'Lora', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.form-title {
+    font-family: 'Lora', serif;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-subtitle {
+    font-size: 1rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    background-color: #fcfcfc;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: #b0b0b0;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(90, 125, 124, 0.2);
+}
+
+/* --- Submit Button --- */
+.submit-btn {
+    width: 100%;
+    height: 55px;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease, width 0.3s ease;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.submit-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Button states */
+.submit-btn .btn-text, .submit-btn .spinner, .submit-btn .checkmark {
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.submit-btn .spinner, .submit-btn .checkmark {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.submit-btn.loading .btn-text, .submit-btn.success .btn-text {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.submit-btn.loading .spinner {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.submit-btn.success .checkmark {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.submit-btn.success {
+    background-color: var(--success-color);
+}
+
+.login-link {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 30px;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 900px) {
+    .register-card {
+        flex-direction: column;
+    }
+    .register-illustration {
+        min-height: 300px;
+        min-width: unset;
+        width: 100%;
+        order: -1; /* Place illustration at the top on mobile */
+    }
+    .register-form-container {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        padding: 10px;
+    }
+    .register-form-container {
+        padding: 30px 20px;
+    }
+    .form-title {
+        font-size: 2rem;
+    }
+    .form-subtitle {
+        font-size: 0.9rem;
+    }
+    .submit-btn {
+        font-size: 1rem;
+    }
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* SVG animations */
+@keyframes float {
+    0% { transform: translateY(0px) rotate(-10deg); }
+    50% { transform: translateY(-10px) rotate(-12deg); }
+    100% { transform: translateY(0px) rotate(-10deg); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

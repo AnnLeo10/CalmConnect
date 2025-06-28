@@ -1,5 +1,30 @@
 {
   "dependencies": {
-    "express": "^5.1.0"
-  }
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3"
+  },
+  "name": "calmconnect",
+  "version": "1.0.0",
+  "description": "CalmConnect is a supportive web platform designed to help individuals overcome barriers to mental health care, such as stigma, fear of judgment, and lack of information. Our goal is to create a safe, engaging, and accessible environment where users can learn about their mental well-being, connect with others, and access personalized support.",
+  "main": "backend-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnnLeo10/CalmConnect.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnnLeo10/CalmConnect/issues"
+  },
+  "homepage": "https://github.com/AnnLeo10/CalmConnect#readme"
 }

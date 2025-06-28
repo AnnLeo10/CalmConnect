@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impulse Control Game</title>
+    <link rel="stylesheet" href="impulse.css">
+</head>
+<body>
+    <audio id="backgroundMusic" loop>
+    <source src="/CalmConnect/gameBg/enchanted-fear-mystery-219774.mp3" type="audio/mpeg">
+    </audio>
+    <div class="container">
+        <header>
+            <h1>Impulse Control Challenge</h1>
+            <div class="controls">
+                <button id="darkModeToggle"></button>
+                <button id="pauseButton">Pause</button>
+                <button id="instructionsButton">Instructions</button>
+                <button id="startGameButton">Start Game</button>
+            </div>
+        </header>
+
+        <div id="instructionsModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" >&times;</span>
+                <h2>Instructions: Impulse Control Challenge</h2>
+                <p>Welcome! In this game, your goal is to click as many <strong>green dots</strong> as you can.</p>
+                <p>However, <strong>DO NOT click the red dots!</strong></p>
+                <p>If you click a red dot, the game will restart from Level 1.</p>
+                <p>The game has <strong>5 levels</strong>, with difficulty increasing in each level.</p>
+                <p><strong>⚠️ Every green dot counts.</strong></p>
+                <p>Hesitate or miss a key moment, and <strong>your performance may suffer.</strong></p>
+                <p>Your timing, accuracy, and decision control will determine how well you handle pressure.</p>
+                <p>Good luck!</p>
+            </div>
+        </div>
+
+        <div id="gameArea">
+            <div class="game-info">
+                <p>Level: <span id="levelDisplay">1</span></p>
+                <p>Score: <span id="scoreDisplay">0</span></p>
+                <p>Status: <span id="statusDisplay">Press Start</span></p>
+            </div>
+            <div id="gameCanvas">
+                </div>
+        </div>
+
+        <div id="gameOverScreen" class="game-over-screen" style="display: none;">
+            <h2>Game Over!</h2>
+            <p id="gameOverMessage"></p>
+            <p>Final Score: <span id="finalScoreDisplay">0</span></p>
+            <button id="restartGameButton">Play Again</button>
+            <button id="nextGameButton">Next Game</button>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Impulse Control Game</p>
+        </footer>
+    </div>
+
+    <div class="paused-overlay" style="display: none;">PAUSED</div>
+
+    <script src="impulse.js"></script>
+</body>
+</html>

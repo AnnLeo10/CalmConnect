@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalmConnect - Red Wire Countdown</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&family=Share+Tech+Mono&family=Oxanium:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="last.css">
+</head>
+<body class="light-mode">
+    <div id="global-message-overlay" class="global-message-overlay hidden">
+        <div class="message-content">
+            <h2 id="global-message-text"></h2>
+        </div>
+    </div>
+
+    <header class="game-header-utility">
+        <label class="dark-mode-switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider round"></span>
+            <span class="mode-text">Dark Mode</span>
+        </label>
+    </header>
+
+    <div class="game-container">
+
+        <div id="instructions-screen" class="game-screen active screen-fade-in">
+            <h1 class="game-title">Red Wire Countdown</h1>
+            <p class="game-tagline">Test your composure under pressure.</p>
+            <div class="instructions-content">
+                <p>Welcome, agent. Your mission: <strong>Defuse the bomb.</strong></p>
+                <p>A series of wires is before you. Only one is correct. One wrong move, or running out of time, triggers an explosion.</p>
+                <p class="highlight-instruction">Your task is to **deduce the pattern** to find the safe wire. The rules may change, or be hidden.</p>
+                <ul>
+                    <li><span class="instruction-icon">&#x23F1;</span> <strong>Time Pressure: </strong> Act swiftly. The timer is unforgiving.</li>
+                    <li><span class="instruction-icon">&#x1F9E9;</span> <strong>Ambiguity: </strong>Instructions may be vague. Trust your instincts and observations.</li>
+                    <li><span class="instruction-icon">&#x1F4A5;</span> <strong>High Stakes: </strong>Every decision counts.</li>
+                </ul>
+                <p class="warning-text"><strong>Warning: </strong>This mini-game simulates high-stress scenarios. No actual danger. Visual & Audio effects only.</p>
+            </div>
+            <button id="startButton" class="btn primary-btn pulse">Start Mission</button>
+        </div>
+
+        <div id="game-play-screen" class="game-screen hidden">
+            <div class="game-info-bar">
+                <div class="timer-area">
+                    <span class="label">Time Remaining:</span>
+                    <div class="timer-bar-wrapper">
+                        <div id="timerBar" class="timer-bar"></div>
+                    </div>
+                    <span id="timerText" class="timer-text">00:00</span>
+                </div>
+                <div class="round-display">
+                    <span class="label">Round:</span> <span id="currentRound">1</span> / <span id="maxRounds">5</span>
+                </div>
+                <button id="pauseButton" class="btn secondary-btn pause-btn">Pause</button>
+            </div>
+
+            <div class="bomb-visual-area">
+                <img src="/CalmConnect/gameImage/bomb.jpg" alt="Bomb" class="bomb-image" id="bombImage">
+                <div id="wireContainer" class="wire-container">
+                    </div>
+                <div id="flickerOverlay" class="flicker-overlay hidden"></div>
+            </div>
+
+            <div id="feedbackMessage" class="feedback-message"></div>
+
+            <button id="nextRoundButton" class="btn primary-btn hidden">Next Challenge</button>
+        </div>
+
+        <div id="pauseOverlay" class="pause-overlay hidden">
+            <div class="pause-content">
+                <h2 class="game-title">Mission Paused</h2>
+                <p>Take a tactical break, agent. The clock has stopped.</p>
+                <button id="resumeButton" class="btn primary-btn">Resume Mission</button>
+                <button id="restartGameFromPause" class="btn secondary-btn">Restart Game</button>
+            </div>
+        </div>
+
+        <div id="end-game-summary-screen" class="game-screen hidden">
+            <h1 class="game-title">Mission Debrief!</h1>
+            <p id="finalEncouragement" class="encouragement-text"></p>
+            <div class="results-summary-quick">
+                <p>Wires Defused: <span id="summaryWiresDefused">0</span></p>
+                <p>Total Explosions: <span id="summaryExplosions">0</span></p>
+                <p>Avg. Reaction Time: <span id="summaryAvgReactionTime">0.00s</span></p>
+            </div>
+            <button id="playAgainButton" class="btn primary-btn">Play Again</button>
+            <button id="viewDetailedResultsButton" class="btn secondary-btn">See Results</button>
+        </div>
+    </div>
+
+    <script src="last.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+body {
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url("videocallbgg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #0f0e0e;
+  position: relative;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  text-align: center;
+  color: #8dd5eb;
+}
+
+.long-text {
+  font-size: 20px;
+  color: #0f0f0f;
+  line-height: 1.9;
+  margin-bottom: 60px;
+  text-align: justify;
+}
+
+.contact-btn {
+  display: block;
+  margin: 0 auto 60px;
+  padding: 14px 28px;
+  font-size: 18px;
+  background-color: #cbd2cc;
+  color: rgb(10, 134, 183);
+  border-color: #e3e8e3;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-btn:hover {
+  background-color: #98cade;
+}

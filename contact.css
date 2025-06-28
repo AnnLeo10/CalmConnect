@@ -1,0 +1,141 @@
+:root {
+  --primary: #4caf50;
+  --primary-dark: #388e3c;
+  --bg-light: #f1fdf7;
+  --text-dark: #2e7d32;
+  --card-bg: #1d1212;
+}
+
+body, html {
+  height: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+}
+
+.contact-page {
+  background-image: url("contactus bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #0f0e0e;
+  position: relative;
+}
+
+h1 {
+  text-align: center;
+  color: var(--text-dark);
+  font-size: 36px;
+  padding: 40px 20px 10px;
+  margin: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 16px;
+  box-sizing: border-box;
+}
+
+.filter-container {
+  text-align: center;
+  margin-bottom: 20px;
+  color: black;
+}
+
+select {
+  font-family: 'Nunito', sans-serif;
+  padding: 10px 14px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #0e0a0a;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  padding: 30px 30px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s forwards;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 12px;
+  border: 4px solid var(--primary);
+  transition: transform 0.3s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.card h2 {
+  color: var(--text-dark);
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.card p {
+  margin: 5px 0;
+  font-size: 15px;
+  color: #e8e1e1;
+}
+
+.video-btn {
+  margin-top: 14px;
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.video-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 28px;
+  }
+  select {
+    width: 90%;
+  }
+  .card {
+    width: 100%;
+  }
+}

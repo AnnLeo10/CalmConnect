@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HealthWeb – Helplines & Support</title>
+  <link rel="stylesheet" href="professional.css" />
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDpVCWdASks0pqfvdbbHCjdzJii5vU19J8",
+      authDomain: "healthweb-95c11.firebaseapp.com",
+      projectId: "healthweb-95c11",
+      storageBucket: "healthweb-95c11.firebasestorage.app",
+      messagingSenderId: "699762925564",
+      appId: "1:699762925564:web:f86c3fa97358babd925c79",
+      measurementId: "G-7JV31MTTPD"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function getHelplines() {
+      const snapshot = await getDocs(collection(db, "helplines"));
+      return snapshot.docs.map(doc => doc.data());
+    }
+    
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const container = document.getElementById("helpline-list");
+      const helplines = await getHelplines();
+
+      helplines.forEach(h => {
+        const card = document.createElement("div");
+        card.className = "helpline-card";
+        card.innerHTML = `
+          <h3>${h.name}</h3>
+          <p><b>Phone:</b> ${h["phone no."] || "N/A"}</p>
+          <p><b>Availability:</b> ${h.availability || "N/A"}</p>
+          <p><b>Description:</b> ${h.description || "N/A"}</p>
+          <p><b>Website:</b> ${
+            h.website
+              ? `<a href="${h.website}" target="_blank">${h.website}</a>`
+              : "Not available"
+          }</p>
+        `;
+        container.appendChild(card);
+      
+      });
+    });
+  </script>
+</head>
+<body class="professional-page">  <h1>Available Mental Health Helplines (NGOs)</h1>
+  <div id="helpline-list"></div>
+</body>
+</html>
+

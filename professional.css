@@ -1,0 +1,109 @@
+:root {
+  --primary: #4caf50;
+  --primary-dark: #388e3c;
+  --bg-light: #f1fdf7;
+  --text-dark: #2e7d32;
+  --card-bg: #1d1212;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+}
+
+.professional-page {
+  background: linear-gradient(to bottom right, #e0f2f1, #a5d6a7);
+}
+
+
+
+h1 {
+  text-align: center;
+  color: var(--text-dark);
+  font-size: 36px;
+  padding: 40px 20px 10px;
+  margin: 0;
+}
+
+.helpline-card {
+  background: rgba(209, 217, 184, 0.75);
+  backdrop-filter: blur(10px);
+  border-left: 8px solid var(--primary);
+  padding: 30px;
+  margin: 30px auto;
+  border-radius: 20px;
+  max-width: 900px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(76, 175, 80, 0.2);
+  border-bottom: 1px solid rgba(76, 175, 80, 0.2);
+}
+
+.helpline-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(76, 175, 80, 0.05), rgba(0, 0, 0, 0));
+  transform: skewY(3deg);
+  z-index: 0;
+}
+
+.helpline-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.helpline-card h3 {
+  font-size: 26px;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.helpline-card p {
+  font-size: 16.5px;
+  color: #333;
+  margin: 10px 0;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+}
+
+.helpline-card p b {
+  color: var(--primary-dark);
+}
+
+.helpline-card a {
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.helpline-card a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+.helpline-card::after {
+  content: 'Verified';
+  position: absolute;
+  top: 15px;
+  right: -35px;
+  background: var(--primary-dark);
+  color: white;
+  padding: 5px 50px;
+  font-size: 13px;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+

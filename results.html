@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Mental Health Report - CalmConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="results.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">CalmConnect</a>
+        </div>
+        <p class="tagline">Your Path to Inner Peace</p>
+    </header>
+
+    <main class="results-container">
+        <section class="result-card fade-in-up">
+            <div class="icon-circle">
+                <i class="fas fa-seedling"></i>
+            </div>
+            <h1 class="result-title">Your Personalized Report</h1>
+            <h2 class="result-subtitle">Based on your responses, here's what we found.</h2>
+            <div class="ai-report-box">
+                <div class="report-header">
+                    <h3>AI Symptom Assessment</h3>
+                </div>
+                <div class="report-content">
+                    <p id="symptom-result-text">
+                        Loading your assessment results...
+                    </p>
+                </div>
+            </div>
+            <p class="disclaimer">
+                This assessment is for informational purposes only and is not a substitute for professional medical advice.
+            </p>
+        </section>
+
+        <section class="statistics-section fade-in-up delay-1">
+            <h2 class="section-title">A Look at the Numbers</h2>
+            <div class="statistics-grid">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                    <p class="stat-number" id="stat-1-number">...</p>
+                    <p class="stat-label" id="stat-1-label">people face this</p>
+                </div>
+                <div class="stat-card scroll-reveal delay-1">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <p class="stat-number" id="stat-2-number">...</p>
+                    <p class="stat-label" id="stat-2-label">receive professional help</p>
+                </div>
+                <div class="stat-card scroll-reveal delay-2">
+                    <div class="stat-icon"><i class="fas fa-user-friends"></i></div>
+                    <p class="stat-number" id="stat-3-number">...</p>
+                    <p class="stat-label" id="stat-3-label">feel isolated</p>
+                </div>
+            </div>
+        </section>
+        
+        <hr class="separator">
+
+        <section class="action-section">
+            <h2 class="section-title fade-in-up delay-2">Your Next Steps</h2>
+            <div class="action-grid">
+                <div class="action-card fade-in-up delay-3">
+                    <div class="card-icon"><i class="fas fa-comments"></i></div>
+                    <h3>Talk to Our Chatbot</h3>
+                    <p>Feeling overwhelmed? Our friendly chatbot is here for a supportive, anonymous chat, 24/7.</p>
+                    <a href="#" class="btn btn-primary" id="open-chatbot-btn">Start Chatting</a>
+                </div>
+
+                <div class="action-card fade-in-up delay-4">
+                    <div class="card-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Explore Resources</h3>
+                    <p>Find articles, exercises, and guided meditations tailored to your symptoms.</p>
+                    <a href="#" class="btn btn-secondary" id="resources-btn">Find Resources</a>
+                </div>
+
+                <div class="action-card fade-in-up delay-5">
+                    <div class="card-icon"><i class="fas fa-user-md"></i></div>
+                    <h3>Find a Specialist</h3>
+                    <p>Connect with licensed therapists and counselors in your area for professional guidance.</p>
+                    <a href="specialist-contacts.html" class="btn btn-tertiary">Find a Specialist</a>
+                </div>
+            </div>
+        </section>
+        
+        <div class="navigation-buttons fade-in-up delay-6">
+            <a href="ccintro.html" class="btn btn-home"><i class="fas fa-home"></i> Back to Home</a>
+            <a href="qhomepage.html" class="btn btn-quiz"><i class="fas fa-redo"></i> Retake the Quiz</a>
+        </div>
+    </main>
+
+    <script src="results.js"></script>
+</body>
+</html>

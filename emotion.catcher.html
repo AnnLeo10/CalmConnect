@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Catcher - Explore Your Perceptions</title>
+    <link rel="stylesheet" href="emotion.catcher.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dark-mode-toggle">
+        <label for="darkModeToggle">Dark Mode
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider"></span>
+        </label>
+        
+    </div>
+    <audio id="backgroundMusic" loop>
+    <source src="/CalmConnect/gameBg/02NearLight.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <section id="instructions-screen" class="screen active">
+            <h1>🎯 Emotion Catcher!</h1>
+            <p>This game is designed to help you explore how you perceive emotions in different scenarios. You'll be shown a series of images, and your task is to select the emotion you believe best describes what's depicted.</p>
+
+            <div class="instructions-list">
+                <h3>How to Play:</h3>
+                <ul>
+                    <li>You will see an image appear on the screen.</li>
+                    <li>Below the image, you'll find a set of emotion options.</li>
+                    <li>Choose the emotion that resonates most with you regarding the image.</li>
+                    <li>There are <strong>10 rounds</strong> in total.</li>
+                    <li>Your goal is to respond authentically. There are no "right" or "wrong" answers in terms of personal perception, but your choices will help us understand your unique emotional biases and response patterns.</li>
+                </ul>
+            </div>
+            <p>Take your time, but try to go with your first instinct. Your genuine responses are most valuable.</p>
+            <button id="startButton" class="cta-button">Start Game</button>
+        </section>
+
+        <section id="game-screen" class="screen hidden">
+            <div class="round-indicator">Round <span id="currentRound">1</span> / 10</div>
+            <div class="image-container">
+                <img id="gameImage" src="" alt="Emotion depiction">
+                <div class="image-overlay"></div>
+            </div>
+            <div class="emotion-options">
+                </div>
+            <div class="timer-bar-container">
+                <div class="timer-bar" id="timerBar"></div>
+            </div>
+        </section>
+
+        <section id="results-screen" class="screen hidden">
+            <h1>Game Over!</h1>
+            <h2>Thank you for playing Emotion Catcher.</h2>
+            <p>Your journey through the emotions has concluded. The way you perceive and react to these images provides valuable insights into your unique emotional landscape.</p>
+
+            <div class="score-summary">
+                <p>Total Rounds Completed: <span id="totalRoundsCompleted">10</span></p>
+                <p>Correct Matches: <span id="correctScore">0</span> / <span id="totalPossible">0</span></p>
+                <p>Average Reaction Time: <span id="avgReactionTime">N/A</span> seconds</p>
+            </div>
+
+            <div class="results-note">
+                <p>Remember, this game is a tool for exploration, not a diagnostic test. If you are experiencing emotional distress, please reach out to a professional.</p>
+            </div>
+            <button id="restartButton" class="cta-button secondary">Play Again</button>
+            <button id="nextGameButton" class="cta-button tertiary">Play Next Game</button>
+        </section>
+        </section>
+    </div>
+
+    <script src="emotion.catcher.js"></script>
+    <script>
+  const toggle = document.querySelector('.dark-mode-toggle input');
+
+  toggle.addEventListener('change', () => {
+    document.body.classList.toggle('dark-mode');
+  });
+</script>
+</body>
+</html>

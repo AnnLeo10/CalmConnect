@@ -1,0 +1,487 @@
+/* --- Base Styles & Variables --- */
+:root {
+    /* Light Mode Colors */
+    --bg: linear-gradient(135deg, #e0f2f7 0%, #c1d9e2 100%);
+    --container-bg: #ffffff;
+    --text-color: #333;
+    --heading-color: #4CAF50;
+    --secondary-text: #555;
+    --button-primary: #4CAF50;
+    --button-text: white;
+    --button-hover: #45a049;
+    --timer-fill: #82E0AA;
+    --border: #eee;
+    --timer: #4CAF50;
+    --link-color: #666;
+    --transition-speed: 0.3s;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+/*dark mode overrides*/
+body.dark-mode {
+  --bg: linear-gradient(135deg, #222222 0%, #0a0a0a 100%);
+  --text-color: #f0f0f0;
+  --container-bg: #333333;
+  --heading-color: #82E0AA;
+  --secondary-text: #ccc;
+  --button-primary: #82E0AA;
+  --button-text: #333;
+  --button-hover: #6cb58a;
+  --border-color: #555;
+  --timer-fill: #82E0AA;
+  --link-color: #ddd;
+  --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --transition-speed: 0.3s;
+}
+/* --- General Body Styles --- */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth dark/light mode transition */
+    overflow-x: hidden; /* Prevent horizontal scroll from subtle animations */
+}
+
+/* --- Dark Mode Toggle --- */
+.dark-mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.dark-mode-toggle input {
+    appearance: none;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.dark-mode-toggle input::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform var(--transition-speed);
+}
+
+.dark-mode-toggle input:checked {
+    background-color: #555;
+}
+
+.dark-mode-toggle input:checked::before {
+    transform: translateX(20px);
+}
+
+.dark-mode-toggle label {
+    font-size: 0.9em;
+    color: var(--secondary-text-light);
+    cursor: pointer;
+    transition: color var(--transition-speed);
+}
+
+/* --- Container --- */
+.container {
+    background-color: var(--container-bg);
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+    padding: 40px;
+    max-width: 800px;
+    text-align: center;
+    margin: 20px;
+    width: 90%;
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+    position: relative; /* For image overlay */
+}
+body.dark-mode .container {
+  background-color: #1a1a1a;
+}
+/* --- Screen Transitions --- */
+.screen {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    position: absolute; /* To allow fading out/in nicely */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: inherit; /* Inherit padding from container */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen.active {
+    opacity: 1;
+    transform: translateY(0);
+    position: static; /* Take up space when active */
+}
+
+.screen.hidden {
+    display: none; /* Hide when not in transition or active */
+}
+
+/* --- Typography --- */
+h1 {
+    font-family: 'Comfortaa', cursive;
+    color: var(--heading-color);
+    font-size: 2.8em;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-family: 'Comfortaa', cursive;
+    color: var(--secondary-text);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1.1em;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+p strong {
+    color: var(--heading-color);
+}
+
+/* --- Instructions Specific --- */
+.instructions-list {
+    text-align: left;
+    margin: 30px auto;
+    max-width: 600px;
+    padding: 0 20px;
+}
+
+.instructions-list h3 {
+    font-family: 'Comfortaa', cursive;
+    color: var(--secondary-text);
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.instructions-list ul {
+    list-style: none; /* Remove default bullets */
+    padding: 0;
+}
+
+.instructions-list li {
+    background-color: rgba(189, 235, 245, 0.2); /* Light background for list items */
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 1em;
+    position: relative;
+    padding-left: 35px; /* Space for custom bullet */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.instructions-list li::before {
+    content: '✓'; /* Custom checkmark bullet */
+    color: var(--heading-color);
+    font-weight: bold;
+    font-size: 1.2em;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* --- Call to Action Buttons --- */
+.cta-button {
+    display: inline-block;
+    background-color: var(--button-primary);
+    color: var(--button-text);
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color var(--transition-speed), transform 0.2s ease, box-shadow var(--transition-speed);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    margin-top: 25px;
+    animation: subtlePulse 2s infinite alternate ease-in-out;
+}
+
+.cta-button:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+}
+
+.cta-button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(76, 175, 80, 0.2);
+}
+
+.cta-button.secondary {
+    background-color: #88B04B; /* A more subdued green */
+    box-shadow: 0 5px 15px rgba(136, 176, 75, 0.3);
+}
+.cta-button.secondary:hover {
+    background-color: #7a9c43;
+    box-shadow: 0 8px 20px rgba(136, 176, 75, 0.4);
+}
+
+.cta-button.tertiary {
+    background-color: #B2D8D8; /* A light, calming blue */
+    color: #333;
+    box-shadow: 0 5px 15px rgba(178, 216, 216, 0.3);
+}
+.cta-button.tertiary:hover {
+    background-color: #9acccb;
+    box-shadow: 0 8px 20px rgba(178, 216, 216, 0.4);
+}
+
+
+/* --- Game Screen Specific --- */
+.round-indicator {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.4em;
+    color: var(--secondary-text);
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    transition: background-color var(--transition-speed);
+}
+
+.image-container {
+    width: 100%;
+    max-width: 600px;
+    height: 350px; /* Fixed height for image area */
+    background-color: floralwhite; /* Placeholder background */
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px auto;
+    position: relative; /* For image and overlay */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    display: flex; /* For centering image */
+    justify-content: center;
+    align-items: center;
+    animation: fadeInScale 0.8s ease-out;
+    transition: background-color var(--transition-speed);
+}
+body.dark-mode .image-container {
+    background-color: #121212; /* or #000000 for pure black */
+}
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ensure image fits without cropping */
+    display: block;
+    border-radius: 10px;
+    transition: transform 0.5s ease; /* Smooth transition for image */
+    will-change: transform; /* Optimize for animation */
+}
+
+/* Grounding animation for image */
+.image-container img:hover {
+    transform: scale(1.02); /* Very subtle zoom on hover */
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 80%);
+    pointer-events: none; /* Allow clicks through overlay */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 1s ease-in-out;
+}
+
+.image-overlay.active {
+    opacity: 1; /* Make visible for a brief moment */
+    animation: vignettePulse 3s infinite alternate; /* Subtle breathing effect */
+}
+
+@keyframes vignettePulse {
+    0% { background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 80%); }
+    50% { background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 85%); }
+    100% { background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 80%); }
+}
+
+
+.emotion-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.2s; /* Delay for options to appear after image */
+}
+
+.emotion-options button {
+    background-color: rgba(178, 216, 216, 0.4); /* Soft blue for options */
+    color: var(--text-color);
+    border: 1px solid rgba(178, 216, 216, 0.8);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform 0.2s ease, border-color var(--transition-speed);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.emotion-options button:hover {
+    background-color: rgba(178, 216, 216, 0.7);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.emotion-options button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.emotion-options button.selected {
+    background-color: var(--heading-color);
+    color: white;
+    border-color: var(--heading-color);
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    transform: scale(1.05); /* Emphasize selected button */
+}
+
+.timer-bar-container {
+    width: 80%;
+    max-width: 500px;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 30px auto 0;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    transition: background-color var(--transition-speed);
+}
+
+.timer-bar {
+    height: 100%;
+    width: 100%; /* Will be controlled by JS */
+    background-color: var(--timer-fill-light);
+    border-radius: 4px;
+    transform-origin: left;
+    transition: width linear; /* Smooth fill */
+}
+
+
+/* --- Results Screen Specific --- */
+.score-summary {
+    background-color: rgba(189, 235, 245, 0.2);
+    padding: 25px;
+    border-radius: 10px;
+    margin: 30px auto;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: background-color var(--transition-speed);
+}
+
+.score-summary p {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: var(--text-color);
+}
+
+.score-summary span {
+    font-weight: bold;
+    color: var(--heading-color);
+    font-family: 'Comfortaa', cursive;
+}
+
+.results-note {
+    font-size: 0.95em;
+    color: var(--secondary-text);
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border);
+}
+
+/* --- Footer / Disclaimer --- */
+.disclaimer {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border);
+}
+
+.disclaimer a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.disclaimer a:hover {
+    text-decoration: underline;
+    color: var(--heading-color);
+}
+
+
+/* --- Animations --- */
+@keyframes subtlePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.01); } /* Very subtle */
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    h1 { font-size: 2.2em; margin-bottom: 15px; }
+    h2 { font-size: 1.5em; }
+    p { font-size: 1em; }
+    .cta-button { padding: 12px 25px; font-size: 1.1em; }
+    .container { padding: 30px 20px; }
+    .image-container { height: 250px; margin: 15px auto; }
+    .emotion-options button { padding: 8px 15px; font-size: 1em; }
+    .instructions-list { margin: 20px auto; }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 1.8em; margin-bottom: 10px; }
+    h2 { font-size: 1.3em; }
+    .container { padding: 20px 15px; }
+    .dark-mode-toggle { top: 10px; right: 10px; }
+    .dark-mode-toggle label { display: none; }
+    .image-container { height: 200px; }
+    .emotion-options { gap: 8px; }
+    .emotion-options button { width: calc(50% - 10px); /* Two columns */ }
+}

@@ -1,0 +1,298 @@
+/* General Body Styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('/CalmConnect/gameImage/pexels-bylukemiller-24589419.jpg'); /* Replace with your image path */
+    background-size: cover; /* Ensures the image covers the entire element */
+    background-position: center center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the background image fixed while scrolling */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease; /* For dark mode transition */
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-image: url('/CalmConnect/gameImage/qhomepage\ dark.jpg'); /* Replace with your image path */
+    background-size: cover; /* Ensures the image covers the entire element */
+    background-position: center center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the background image fixed while scrolling */
+   
+    color: #f0f0f0;
+}
+
+body.dark-mode header h1 {
+    color: #a7f3d0; /* Lighter green for dark mode */
+}
+
+body.dark-mode header h2 {
+    color: #ccc;
+}
+
+body.dark-mode p {
+    color: #ddd;
+}
+
+body.dark-mode p strong {
+    color: #a7f3d0;
+}
+
+body.dark-mode .start-button {
+    background-color: #a7f3d0;
+    color: #333;
+    box-shadow: 0 5px 15px rgba(167, 243, 208, 0.3);
+}
+
+body.dark-mode .start-button:hover {
+    background-color: #92d7b8;
+    box-shadow: 0 8px 20px rgba(167, 243, 208, 0.4);
+}
+
+body.dark-mode .disclaimer {
+    border-top-color: #555;
+    color: #bbb;
+}
+
+body.dark-mode .disclaimer a {
+    color: #ddd;
+}
+
+/* Container for the content */
+.container {
+    background-color: #5f915821;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 800px;
+    text-align: center;
+    animation: fadeIn 1s ease-out;
+    margin: 20px; /* Add some margin for smaller screens */
+    width: 90%; /* Responsive width */
+}
+
+body.dark-mode .container {
+    background-color: #4444443a;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes subtlePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* Header Styles */
+header {
+    animation: scaleIn 0.8s ease-out;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-family: 'Comfortaa', cursive;
+    color: #102b10; /* A hopeful green */
+    font-size: 2.8em;
+    margin-bottom: 10px;
+}
+
+header h2 {
+    font-family: 'Comfortaa', cursive;
+    color: #383434;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+/* Main Content Styles */
+main {
+    animation: fadeInUp 1.2s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+main p {
+    font-size: 1.2em;
+    color: #000000;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+main p strong {
+    color: #102b10;
+}
+
+/* Call to Action Button */
+.start-button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    margin-top: 25px;
+    animation: subtlePulse 2s infinite alternate ease-in-out; /* Subtle pulse animation */
+}
+
+.start-button:hover {
+    background-color: #45a049;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+}
+
+.start-button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(76, 175, 80, 0.2);
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10; /* Ensure it's above other elements */
+}
+
+.dark-mode-toggle input {
+    appearance: none;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode-toggle input::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease;
+}
+
+.dark-mode-toggle input:checked {
+    background-color: #555;
+}
+
+.dark-mode-toggle input:checked::before {
+    transform: translateX(20px);
+}
+
+.dark-mode-toggle label {
+    font-size: 0.9em;
+    color: #777;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .dark-mode-toggle label {
+    color: #bbb;
+}
+
+/* Small print/Disclaimer */
+.disclaimer {
+    font-size: 0.9em;
+    color: #000000;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px dashed #eee;
+}
+
+.disclaimer a {
+    color: #1a1919;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.disclaimer a:hover {
+    text-decoration: underline;
+    color: #4CAF50;
+}
+
+body.dark-mode .disclaimer a:hover {
+    color: #a7f3d0;
+}
+
+/* Footer */
+.copyright {
+    margin-top: 10px;
+    font-size: 0.85em;
+    color: #aaa;
+}
+
+body.dark-mode .copyright {
+    color: #888;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2em;
+    }
+    header h2 {
+        font-size: 1.5em;
+    }
+    main p {
+        font-size: 1em;
+    }
+    .start-button {
+        padding: 12px 25px;
+        font-size: 1.1em;
+    }
+    .container {
+        padding: 30px 20px;
+    }
+    .dark-mode-toggle {
+        top: 15px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+    header h2 {
+        font-size: 1.3em;
+    }
+    .container {
+        padding: 20px 15px;
+    }
+    .dark-mode-toggle label {
+        display: none; /* Hide label on very small screens */
+    }
+}

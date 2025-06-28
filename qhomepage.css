@@ -8,7 +8,7 @@ body {
     background-position: center center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     background-attachment: fixed; /* Keeps the background image fixed while scrolling */
-    color: #333;
+    color: #fff7f7;
     display: flex;
     justify-content: center;
     align-items: center;

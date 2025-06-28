@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stat3: { number: '75%', label: 'of people feel isolated (Study)' }
         },
         resourcesLink: 'resources.html', // Placeholder
-        specialistLink: 'videocall.html' // Link to your specialist page
+        specialistLink: 'specialist.html' // Link to your specialist page
     };
 
     // --- Dynamic Content Population ---

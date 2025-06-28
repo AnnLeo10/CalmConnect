@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk-Reward Tradeoff</title>
+    <link rel="stylesheet" href="risk-safe.css">
+</head>
+<body>
+    <audio id="backgroundMusic" loop>
+    <source src="/CalmConnect/gameBg/upbeat-country-blues-113997.mp3" type="audio/mpeg">
+    </audio>
+    <div class="container">
+        <header>
+            <h1>Risk-Reward Tradeoff</h1>
+            <div class="controls">
+                <button id="darkModeToggle">Dark Mode</button>
+                <button id="pauseButton">Pause</button>
+                <button id="instructionsButton">Instructions</button>
+                <button id="startGameButton">Start Game</button>
+            </div>
+        </header>
+
+        <div id="instructionsModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Instructions: Risk-Reward Challenge</h2>
+                <p>Welcome! In this game, you will be presented with different scenarios.</p>
+                <p>For each scenario, you must choose between a <strong>Safe Option</strong> and a <strong>Risky Option</strong>.</p>
+                <ul>
+                    <li><strong>Safe Option:</strong> Offers a smaller, but guaranteed reward.</li>
+                    <li><strong>Risky Option:</strong> Offers a chance at a much larger reward, but also a chance to lose everything or face a negative consequence.</li>
+                </ul>
+                <p>There are <strong>5 rounds</strong>. Your goal is to accumulate as much reward as possible.</p>
+                <p>Think carefully about each choice, but be aware of how the scenarios make you feel.</p>
+                <p>Your decisions and reactions will be analyzed.</p>
+                <p>Good luck!</p>
+            </div>
+        </div>
+
+        <div id="gameArea">
+            <div class="game-info">
+                <p>Round: <span id="roundDisplay">1</span></p>
+                <p>Current Score: <span id="scoreDisplay">0</span></p>
+                <p>Status: <span id="statusDisplay">Press Start</span></p>
+            </div>
+
+            <div id="scenarioContainer" class="scenario-container">
+                <p id="scenarioText" class="scenario-text">Click "Start Game" to begin your challenge.</p>
+                <p id="resultText" class="result-text"></p>
+                <div class="choices">
+                    <button id="safeOptionButton" class="choice-button safe-button" disabled>Safe Option</button>
+                    <button id="riskyOptionButton" class="choice-button risky-button" disabled>Risky Option</button>
+                </div>
+            </div>
+
+            <button id="nextRoundButton" style="display: none;">Next Round</button>
+        </div>
+
+        <div id="gameOverScreen" class="game-over-screen" style="display: none;">
+            <h2>Game Over!</h2>
+            <p id="gameOverMessage"></p>
+            <p>Final Score: <span id="finalScoreDisplay">0</span></p>
+            <button id="restartGameButton">Restart Game</button>
+            <button id="nextGameButton">Next Game</button>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Risk-Reward Game</p>
+        </footer>
+    </div>
+
+    <div class="paused-overlay" style="display: none;">PAUSED</div>
+
+    <script src="risk-safe.js"></script>
+</body>
+</html>

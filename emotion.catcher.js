@@ -36,18 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // IMPORTANT: For mental health assessment, "correct" might mean "expected" or "most common perception."
     // You should use diverse images (facial expressions, abstract art, nature scenes, social interactions).
     const images = [
-        { src: 'CalmConnect/gameImage/emotions/happy/h1.jpg', expectedEmotion: 'Happy' },
-        { src: 'CalmConnect/gameImage/emotions/happy/h2.jpg', expectedEmotion: 'Happy' },
-        { src: 'CalmConnect/gameImage/emotions/angry/a1.jpg', expectedEmotion: 'Anger' },
-        { src: 'CalmConnect/gameImage/emotions/angry/a2.jpg', expectedEmotion: 'Angry' },
-        { src: 'CalmConnect/gameImage/emotions/sad/sa1.jpg', expectedEmotion: 'Sad' },
-        { src: 'CalmConnect/gameImage/emotions/sad/sa2.jpg', expectedEmotion: 'Sad' },
-        { src: 'CalmConnect/gameImage/emotions/confused/c1.jpg', expectedEmotion: 'Confused' },
-        { src: 'CalmConnect/gameImage/emotions/confused/c2.jpg', expectedEmotion: 'Confused' },
-        { src: 'CalmConnect/gameImage/emotions/surprised/su1.jpg', expectedEmotion: 'Surprised' },
-        { src: 'CalmConnect/gameImage/emotions/surprised/su2.jpg', expectedEmotion: 'Surprised' }
-        // Add more images as needed. Ensure they are diverse and ethically sourced.
-    ];
+    { src: 'gameImage/emotions/happy/h1.jpg', expectedEmotion: 'Happy' },
+    { src: 'gameImage/emotions/happy/h2.jpg', expectedEmotion: 'Happy' },
+    { src: 'gameImage/emotions/angry/a1.jpg', expectedEmotion: 'Angry' },
+    { src: 'gameImage/emotions/angry/a2.jpg', expectedEmotion: 'Angry' },
+    { src: 'gameImage/emotions/sad/sa1.jpg', expectedEmotion: 'Sad' },
+    { src: 'gameImage/emotions/sad/sa2.jpg', expectedEmotion: 'Sad' },
+    { src: 'gameImage/emotions/confused/c1.jpg', expectedEmotion: 'Confused' },
+    { src: 'gameImage/emotions/confused/c2.jpg', expectedEmotion: 'Confused' },
+    { src: 'gameImage/emotions/surprised/su1.jpg', expectedEmotion: 'Surprised' },
+    { src: 'gameImage/emotions/surprised/su2.jpg', expectedEmotion: 'Surprised' }
+];
+
 
     // Shuffle images for random order each time
     function shuffleArray(array) {

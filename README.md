@@ -15,3 +15,4 @@ Integrate real-time support options, such as a chatbot and therapist directory.
 Ensure data privacy and security for all users.
 
 Our mission is to empower people to seek help, share their stories, and support each other—making mental health care more approachable for everyone.
+---------------------------------------------------------Team Titans------------------------------------------------------------------------------------------------------------
